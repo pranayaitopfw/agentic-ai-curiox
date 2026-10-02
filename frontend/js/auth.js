@@ -1,61 +1,4 @@
-const API = "https://agentic-ai-curiox.onrender.com/api/auth";
-// REGISTER
-
-const registerForm = document.getElementById("registerForm");
-
-if (registerForm) {
-
-    registerForm.addEventListener("submit", async (e) => {
-
-        e.preventDefault();
-
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const role = document.getElementById("role").value;
-
-        try {
-
-            const response = await fetch(`${API}/register`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-
-                body: JSON.stringify({
-                    name,
-                    email,
-                    password,
-                    role
-                })
-
-            });
-
-            const data = await response.json();
-
-            document.getElementById("message").textContent =
-                data.message;
-
-            if (response.ok) {
-
-                setTimeout(() => {
-                    window.location.href = "login.html";
-                }, 500);
-
-            }
-
-        } catch (error) {
-
-            document.getElementById("message").textContent =
-                "Server connection failed";
-
-                message.className = "error";
-        }
-
-    });
-}
-
-
+```js
 // LOGIN
 
 const loginForm = document.getElementById("loginForm");
@@ -71,6 +14,9 @@ if (loginForm) {
 
         const password =
             document.getElementById("loginPassword").value;
+
+        const loginMessage =
+            document.getElementById("loginMessage");
 
         try {
 
@@ -91,17 +37,12 @@ if (loginForm) {
 
             const data = await response.json();
 
-            // document.getElementById("loginMessage").textContent =
-            //     data.message;
-
-            const loginMessage = document.getElementById("loginMessage")
-
-            if(loginForm){
-                loginMessage.textContent = data.message || "login Fail"
-                loginMessage.className = "error"
-            }
+            loginMessage.textContent =
+                data.message || "Login failed";
 
             if (response.ok) {
+
+                loginMessage.className = "success";
 
                 localStorage.setItem(
                     "token",
@@ -125,16 +66,26 @@ if (loginForm) {
 
                 }
 
+            } else {
+
+                loginMessage.className = "error";
+
+                console.log("Login error:", data);
+
             }
 
         } catch (error) {
 
-            document.getElementById("loginMessage").textContent =
+            console.error("Login connection error:", error);
+
+            loginMessage.textContent =
                 "Server connection failed";
-                loginMessage.className = "error";
+
+            loginMessage.className = "error";
 
         }
 
     });
 
 }
+```
