@@ -91,7 +91,7 @@ router.post("/login", async (req, res) => {
                 id: user._id,
                 role: user.role
             },
-            process.env.JWT_SECRET,
+            process.env.dd70598e9b5f000765c79571f2587dea789eb6be5b7fa3af88bea6499f6bed32,
             {
                 expiresIn: "1d"
             }
