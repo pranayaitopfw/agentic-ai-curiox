@@ -30,7 +30,7 @@ if (loginForm) {
             console.log("Login response:", data);
 
             loginMessage.textContent =
-                data.message || "Login failed";
+                `${data.message || "Login failed"} ${data.error || ""}`;
 
             if (response.ok) {
 
