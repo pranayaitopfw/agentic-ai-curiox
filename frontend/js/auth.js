@@ -1,4 +1,3 @@
-```js
 // LOGIN
 
 const loginForm = document.getElementById("loginForm");
@@ -9,33 +8,26 @@ if (loginForm) {
 
         e.preventDefault();
 
-        const email =
-            document.getElementById("loginEmail").value;
-
-        const password =
-            document.getElementById("loginPassword").value;
-
-        const loginMessage =
-            document.getElementById("loginMessage");
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+        const loginMessage = document.getElementById("loginMessage");
 
         try {
 
             const response = await fetch(`${API}/login`, {
-
                 method: "POST",
-
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 },
-
                 body: JSON.stringify({
                     email,
-                    password,
-                }),
-
+                    password
+                })
             });
 
             const data = await response.json();
+
+            console.log("Login response:", data);
 
             loginMessage.textContent =
                 data.message || "Login failed";
@@ -44,33 +36,18 @@ if (loginForm) {
 
                 loginMessage.className = "success";
 
-                localStorage.setItem(
-                    "token",
-                    data.token
-                );
-
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify(data.user)
-                );
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
 
                 if (data.user.role === "department") {
-
-                    window.location.href =
-                        "department.html";
-
+                    window.location.href = "department.html";
                 } else {
-
-                    window.location.href =
-                        "dashboard.html";
-
+                    window.location.href = "dashboard.html";
                 }
 
             } else {
 
                 loginMessage.className = "error";
-
-                console.log("Login error:", data);
 
             }
 
@@ -82,10 +59,8 @@ if (loginForm) {
                 "Server connection failed";
 
             loginMessage.className = "error";
-
         }
 
     });
 
 }
-```
