@@ -1,4 +1,4 @@
-const API = "https://curiox-backend.onrender.com/api/auth";
+const API = "https://agentic-ai-curiox.onrender.com/api/auth";
 // REGISTER
 
 const registerForm = document.getElementById("registerForm");
