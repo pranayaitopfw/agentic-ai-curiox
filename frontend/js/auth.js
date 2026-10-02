@@ -1,5 +1,4 @@
-const API = "http://localhost:5000/api/auth";
-
+const API = "https://curiox-backend.onrender.com/api/auth";
 // REGISTER
 
 const registerForm = document.getElementById("registerForm");
