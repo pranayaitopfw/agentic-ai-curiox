@@ -63,4 +63,8 @@ if (loginForm) {
 
     });
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 13b2db2 (Fix login JavaScript)
