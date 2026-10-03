@@ -1,6 +1,6 @@
 require("dotenv").config()  //load a dotenv file
 
-console.log("JWT_SECRET loaded:", !!process.env.JWT_SECRET);
+console.log("JWT_SECRET available:", Boolean(process.env.JWT_SECRET));
 
 const express = require('express')
 const cors = require('cors')  //CONNECT FROT-BACK=END
